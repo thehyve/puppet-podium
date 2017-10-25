@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+cd "$( dirname "${BASH_SOURCE[0]}" )"
+pwd
+java -jar <%= @uaa_java_opts %> <%= @uaa_app_opts %> <%= @uaa_war_file %>
+

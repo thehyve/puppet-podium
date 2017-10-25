@@ -1,0 +1,16 @@
+---
+podium::registry_git_ssh_key: |
+  -----BEGIN RSA PRIVATE KEY-----
+  Placeholder data
+  -----END RSA PRIVATE KEY-----
+
+
+podium::gateway_db_user: podiumGateway
+podium::gateway_db_password: Some random secret
+
+podium::uaa_db_user: podiumUaa
+podium::uaa_db_password: Some random secret
+
+podium::reply_address: podium@example.com
+podium::app_url: https://podium.example.com
+

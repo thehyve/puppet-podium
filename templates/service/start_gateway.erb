@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+cd "$( dirname "${BASH_SOURCE[0]}" )"
+pwd
+java -jar <%= @gateway_java_opts %> <%= @gateway_app_opts %> <%= @gateway_war_file %>
+

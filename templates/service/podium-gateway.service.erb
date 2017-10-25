@@ -1,0 +1,14 @@
+[Unit]
+Description=Podium Gateway microservice
+After=podium-registry.service podium-uaa.service
+
+[Service]
+User=<%= @user %>
+WorkingDirectory=<%= @home %>
+ExecStartPre=/bin/sleep 20
+ExecStart=<%= @gateway_start_script %>
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
+

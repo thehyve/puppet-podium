@@ -1,0 +1,12 @@
+[Unit]
+Description=Podium Registry microservice
+
+[Service]
+User=<%= @user %>
+WorkingDirectory=<%= @home %>
+ExecStart=<%= @registry_start_script %>
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
+

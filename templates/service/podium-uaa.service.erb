@@ -1,0 +1,14 @@
+[Unit]
+Description=Podium User Authentication microservice
+After=podium-registry.service
+
+[Service]
+User=<%= @user %>
+WorkingDirectory=<%= @home %>
+ExecStartPre=/bin/sleep 10
+ExecStart=<%= @uaa_start_script %>
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
+

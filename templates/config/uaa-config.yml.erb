@@ -1,0 +1,11 @@
+spring:
+    datasource:
+        url: <%= @uaa_db_url %>
+        username: <%= @uaa_db_user %>
+        password: <%= @uaa_db_password %>
+---
+podium:
+    mail:
+        from: <%= @reply_address %>
+        baseUrl: <%= @app_url %>
+

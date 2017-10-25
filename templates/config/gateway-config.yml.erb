@@ -1,0 +1,11 @@
+spring:
+    datasource:
+        url: <%= @gateway_db_url %>
+        username: <%= @gateway_db_user %>
+        password: <%= @gateway_db_password %>
+---
+podium:
+    mail:
+        from: <%= @reply_address %>
+        base-url: <%= @app_url %>
+
