@@ -56,8 +56,20 @@ class podium {
 
     include ::podium::user
 
+    case $::osfamily {
+        'redhat': {
+            $default_java = 'java-1.8.0-openjdk'
+        }
+        'debian': {
+            $default_java = 'openjdk-8-jdk'
+        }
+        default: {
+            $default_java = 'openjdk-8-jdk'
+        }
+    }
+
     class { '::java':
-        package => hiera('java::package', 'openjdk-8-jdk'),
+        package => hiera('java::package', $default_java),
     }
     if $::osfamily == 'Debian' {
         package { 'haveged':
