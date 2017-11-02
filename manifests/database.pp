@@ -3,7 +3,6 @@ class podium::database inherits podium::params {
 
     include ::podium
     include ::podium::config
-    include ::postgresql::server
 
     $gateway_dbname = $podium::params::gateway_dbname
     $gateway_db_user = $podium::params::gateway_db_user
@@ -11,6 +10,15 @@ class podium::database inherits podium::params {
     $uaa_dbname = $podium::params::uaa_dbname
     $uaa_db_user = $podium::params::uaa_db_user
     $uaa_db_password = $podium::params::uaa_db_password
+
+    $default_postgresql_version = $::podium::params::default_postgresql_version
+
+    class { '::postgresql::globals':
+        manage_package_repo => true,
+        version             => hiera('postgresql::version', $default_postgresql_version),
+    }
+    -> class { '::postgresql::server':
+    }
 
     # Databases
     postgresql::server::database { $gateway_dbname: }

@@ -43,6 +43,14 @@ class podium::params(
     }
 
     # Database settings
+    case $::osfamily {
+        'redhat': {
+            $default_postgresql_version = '9.4'
+        }
+        default: {
+            $default_postgresql_version = '9.5'
+        }
+    }
     $gateway_db_url = "jdbc:postgresql://${gateway_db_host}:${gateway_db_port}/${gateway_dbname}"
     $uaa_db_url = "jdbc:postgresql://${uaa_db_host}:${uaa_db_port}/${uaa_dbname}"
 

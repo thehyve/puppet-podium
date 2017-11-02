@@ -59,9 +59,10 @@ class podium {
     class { '::java':
         package => hiera('java::package', 'openjdk-8-jdk'),
     }
-
-    package { 'haveged':
-        ensure => installed,
+    if $::osfamily == 'Debian' {
+        package { 'haveged':
+            ensure => installed,
+        }
     }
 
 }
