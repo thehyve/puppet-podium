@@ -75,6 +75,9 @@ Defaults can then be configured in `/etc/puppetlabs/code/hieradata/default.yaml`
 ```yaml
 ---
 podium::podium_version: 0.0.7
+
+postgresql::version: 9.6 # the postgresql server version to use/install.
+postgresql::manage_package_repo: false # use the default package repository to install postgresql.
 ```
 
 Machine specific configuration should be in `/etc/puppetlabs/code/hieradata/${hostname}.yaml`, e.g.,

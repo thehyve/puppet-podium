@@ -14,7 +14,7 @@ class podium::database inherits podium::params {
     $default_postgresql_version = $::podium::params::default_postgresql_version
 
     class { '::postgresql::globals':
-        manage_package_repo => true,
+        manage_package_repo => hiera('postgresql::manage_package_repo', true),
         version             => hiera('postgresql::version', $default_postgresql_version),
     }
     -> class { '::postgresql::server':
