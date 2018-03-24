@@ -1,6 +1,6 @@
 [Unit]
 Description=Podium User Authentication microservice
-After=podium-registry.service
+After=podium-registry.service network.target
 
 [Service]
 User=<%= @user %>
