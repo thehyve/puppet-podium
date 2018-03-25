@@ -10,6 +10,7 @@ class podium::config inherits podium::params {
     $uaa_db_password = $podium::params::uaa_db_password
     $app_url = $podium::params::app_url
     $reply_address = $podium::params::reply_address
+    $registry_password = $podium::params::registry_password
     $registry_git_token = $podium::params::registry_git_token
     $registry_git_ssh_key = $podium::params::registry_git_ssh_key
     $registry_git_ssh_pubkey = $podium::params::registry_git_ssh_pubkey
@@ -17,6 +18,7 @@ class podium::config inherits podium::params {
     $home = $podium::params::podiumuser_home
     $gateway_config_file = $podium::params::gateway_config_file
     $uaa_config_file = $podium::params::uaa_config_file
+    $registry_config_file = $podium::params::registry_config_file
 
     File {
         ensure  => present,
@@ -68,10 +70,6 @@ class podium::config inherits podium::params {
 
     if ($registry_git_token != undef) {
         $registry_git_options = "-Dspring.cloud.config.server.git.username=${registry_git_token}"
-    } elsif ($registry_git_ssh_key != undef) {
-
-    } else {
-        fail('Please configure either podium::registry_git_token or podium::registry_git_ssh_key')
     }
 
     file { $gateway_config_file:
@@ -79,6 +77,9 @@ class podium::config inherits podium::params {
     }
     file { $uaa_config_file:
         content => template('podium/config/uaa-config.yml.erb'),
+    }
+    file { $registry_config_file:
+        content => template('podium/config/registry-config.yml.erb'),
     }
 
 }

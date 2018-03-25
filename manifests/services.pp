@@ -22,11 +22,13 @@ class podium::services inherits podium::params {
 
     $default_java_opts = '-server -Djava.awt.headless=true'
     $default_app_opts = '-Dspring.profiles.active=prod -Djava.security.egd=file:///dev/urandom'
+    $default_registry_opts = '-Dspring.profiles.active=prod,native -Djava.security.egd=file:///dev/urandom'
 
     $registry_memory = $::podium::params::registry_memory
     $registry_java_opts = "${default_java_opts} -Xms${registry_memory} -Xmx${registry_memory}"
     $registry_branch_opts = '-Dspring.cloud.config.label=dev'
-    $registry_app_opts = "${default_app_opts} ${registry_branch_opts}"
+    $registry_config_opts = "-Dspring.config.location=${::podium::params::registry_config_file}"
+    $registry_app_opts = "${default_registry_opts} ${registry_branch_opts} ${registry_config_opts}"
     $registry_start_script = "${home}/start_registry"
 
     $gateway_memory = $::podium::params::gateway_memory

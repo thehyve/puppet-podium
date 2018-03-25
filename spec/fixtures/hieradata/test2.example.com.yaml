@@ -1,3 +1,5 @@
 ---
 podium::reply_address: podium@example.com
 
+podium::registry_password: Some secret
+

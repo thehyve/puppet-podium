@@ -2,7 +2,6 @@
 class podium::params(
     String[1] $user                                     = hiera('podium::user', 'podium'),
     Optional[String[2]] $user_home                      = hiera('podium::user_home', undef),
-    String[1] $gateway_version                          = hiera('podium::gateway_version', '0.0.1-SNAPSHOT'),
 
     String[1] $nexus_url                                = hiera('podium::nexus_url', 'https://repo.thehyve.nl'),
     Enum['snapshots', 'releases'] $registry_repository  = hiera('podium::registry_repository', 'snapshots'),
@@ -11,6 +10,7 @@ class podium::params(
     String[1] $registry_version                         = hiera('podium::registry_version', '1.0.3-SNAPSHOT'),
     String[1] $podium_version                           = hiera('podium::podium_version', '0.0.7-SNAPSHOT'),
 
+    String[8] $registry_password                        = hiera('podium::registry_password', undef),
     Optional[String[1]] $registry_git_token             = hiera('podium::registry_git_token', undef),
     Optional[String[1]] $registry_git_ssh_key           = hiera('podium::registry_git_ssh_key', undef),
     Optional[String[1]] $registry_git_ssh_pubkey        = hiera('podium::registry_git_ssh_pubkey', undef),
@@ -42,15 +42,6 @@ class podium::params(
         fail('No database password specified. Please configure podium::uaa_db_password')
     }
 
-    # Database settings
-    case $::osfamily {
-        'redhat': {
-            $default_postgresql_version = '9.4'
-        }
-        default: {
-            $default_postgresql_version = '9.5'
-        }
-    }
     $gateway_db_url = "jdbc:postgresql://${gateway_db_host}:${gateway_db_port}/${gateway_dbname}"
     $uaa_db_url = "jdbc:postgresql://${uaa_db_host}:${uaa_db_port}/${uaa_dbname}"
 
@@ -61,6 +52,7 @@ class podium::params(
         $podiumuser_home = $user_home
     }
 
+    $registry_config_file = "${podiumuser_home}/registry-config.yml"
     $gateway_config_file = "${podiumuser_home}/gateway-config.yml"
     $uaa_config_file = "${podiumuser_home}/uaa-config.yml"
 
