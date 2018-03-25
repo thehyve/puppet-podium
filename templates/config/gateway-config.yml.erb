@@ -10,4 +10,9 @@ podium:
         base-url: <%= @app_url %>
     registry:
         password: <%= @registry_password %>
+    access:
+        request-template: # Configure Basic Authentication for the /api/public/requests/template endpoint.
+<% @request_template_tokens.each do |token| -%>
+            - <%= token %>
+<% end -%>
 

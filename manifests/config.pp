@@ -19,6 +19,7 @@ class podium::config inherits podium::params {
     $gateway_config_file = $podium::params::gateway_config_file
     $uaa_config_file = $podium::params::uaa_config_file
     $registry_config_file = $podium::params::registry_config_file
+    $request_template_tokens = $podium::params::request_template_tokens
 
     File {
         ensure  => present,

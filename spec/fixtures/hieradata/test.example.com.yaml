@@ -15,3 +15,6 @@ podium::uaa_db_password: Some random secret
 podium::reply_address: podium@example.com
 podium::app_url: https://podium.example.com
 
+podium::request_template_tokens:
+  - test:test
+
