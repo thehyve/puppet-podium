@@ -7,6 +7,7 @@ User=<%= @user %>
 WorkingDirectory=<%= @home %>
 ExecStartPre=/bin/sleep 20
 ExecStart=<%= @gateway_start_script %>
+Restart=always
 StandardOutput=journal+console
 
 [Install]

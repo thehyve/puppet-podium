@@ -44,8 +44,14 @@ class podium::services inherits podium::params {
     $uaa_app_opts = "${default_app_opts} ${uaa_config_opts}"
     $uaa_start_script = "${home}/start_uaa"
 
+    if $::podium::params::disable_services {
+        $service_status = stopped
+    } else {
+        $service_status = running
+    }
+
     Service {
-        #ensure   => running,
+        ensure   => $service_status,
         provider => 'systemd',
     }
 

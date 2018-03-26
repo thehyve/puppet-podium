@@ -33,7 +33,9 @@ class podium::params(
     Optional[String[1]] $app_url                        = hiera('podium::app_url', undef),
 
     String[1] $reply_address                            = hiera('podium::reply_address', 'podium@thehyve.nl'),
-    Array[String[1]] $request_template_tokens           = hiera('podium::request_template_tokens', [])
+    Array[String[1]] $request_template_tokens           = hiera('podium::request_template_tokens', []),
+
+    Boolean $disable_services                           = hiera('podium::disable_services', false),
 ) {
 
     if ($gateway_db_password == undef) {

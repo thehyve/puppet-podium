@@ -208,6 +208,8 @@ Alternatively, the parameters of the `::podium::params` class can be used to con
 | `podium::gateway_memory` | `2g` | Memory allocated for the Gateway service. |
 | `podium::uaa_memory` | `1g` | Memory allocated for the UAA service. |
 | `podium::reply_address` | | The email address used in emails. |
+| `podium::request_template_tokens` | [] | Basic authentication tokens `username:password` for the request template endpoint. |
+| `podium::disable_services` | false | (Temporarily) disable the services. |
 
 Access to the [config repository](https://github.com/thehyve/bbmri-podium-config) is possible through ssh.
 Generate a key pair with `ssh-keygen -f bbmri-podium-config`, upload the public key
