@@ -1,6 +1,6 @@
 {
   "name": "thehyve-podium",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "thehyve",
   "summary": "Puppet module for the Podium request portal",
   "license": "GPL-3.0",
@@ -25,7 +25,8 @@
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "14.04",
-        "16.04"
+        "16.04",
+        "18.04"
       ]
     },
     {

@@ -11,6 +11,7 @@ class podium::config inherits podium::params {
     $app_url = $podium::params::app_url
     $reply_address = $podium::params::reply_address
     $registry_password = $podium::params::registry_password
+    $jwt_secret = $podium::params::jwt_secret
     $registry_git_token = $podium::params::registry_git_token
     $registry_git_ssh_key = $podium::params::registry_git_ssh_key
     $registry_git_ssh_pubkey = $podium::params::registry_git_ssh_pubkey

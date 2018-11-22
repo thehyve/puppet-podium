@@ -1,10 +1,9 @@
 require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-lint/tasks/puppet-lint'
+require 'metadata-json-lint/rake_task'
+require 'rubocop/rake_task'
 
-if RUBY_VERSION >= '1.9'
-  require 'rubocop/rake_task'
-  RuboCop::RakeTask.new
-end
+RuboCop::RakeTask.new
 
 PuppetLint.configuration.send('disable_80chars')
 PuppetLint.configuration.relative = true
@@ -25,7 +24,7 @@ end
 
 desc 'Run metadata_lint, lint, validate, and spec tests.'
 task :test do
-  [:metadata_lint, :lint, :validate, :spec].each do |test|
+  [:lint, :validate, :spec].each do |test|
     Rake::Task[test].invoke
   end
 end

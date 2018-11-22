@@ -1,5 +1,7 @@
 # Puppet module for Podium.
 
+[![Build Status](https://travis-ci.org/thehyve/puppet-podium.svg?branch=master)](https://travis-ci.org/thehyve/puppet-podium/branches)
+
 This is the repository containing a puppet module for deploying the [Podium application](https://github.com/thehyve/podium),
 an open source, microservices based request portal.
 
@@ -161,7 +163,7 @@ bundle
 ```
 or using `rvm`:
 ```bash
-rvm install 2.1
+rvm install 2.4
 gem install bundler
 export PUPPET_VERSION=4.4.2
 bundle
@@ -193,9 +195,9 @@ Alternatively, the parameters of the `::podium::params` class can be used to con
 | Hiera key | Default value | Description |
 |-----------|---------------|-------------|
 | `podium::nexus_url`     | `https://repo.thehyve.nl` | The Nexus/Maven repository server. |
-| `podium::registry_version`       | `0.0.1-SNAPSHOT` | The version of the Podium registry to install. |
+| `podium::registry_version`       | `0.0.3` | The version of the Podium registry to install. |
 | `podium::registry_repository`    | `releases` | The repository to use for the registry. [`snapshots`, `releases`] |
-| `podium::podium_version`       | `0.0.1-SNAPSHOT` | The version of Podium to install. |
+| `podium::podium_version`       | `0.0.7` | The version of Podium to install. |
 | `podium::podium_repository`    | `releases` | The repository to use for Podium. [`snapshots`, `releases`] |
 | `podium::user`          | `podium` | System user that owns the application assets. |
 | `podium::user_home`     | `/home/${user}` | The user home directory |
@@ -224,7 +226,7 @@ with an SSL proxy installed on the host machine.
 
 ## License
 
-Copyright &copy; 2017  The Hyve.
+Copyright &copy; 2017&ndash;2018  The Hyve.
 
 The puppet module for Podium is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

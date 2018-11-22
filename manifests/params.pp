@@ -4,13 +4,14 @@ class podium::params(
     Optional[String[2]] $user_home                      = hiera('podium::user_home', undef),
 
     String[1] $nexus_url                                = hiera('podium::nexus_url', 'https://repo.thehyve.nl'),
-    Enum['snapshots', 'releases'] $registry_repository  = hiera('podium::registry_repository', 'snapshots'),
+    Enum['snapshots', 'releases'] $registry_repository  = hiera('podium::registry_repository', 'releases'),
     Enum['snapshots', 'releases'] $podium_repository    = hiera('podium::podium_repository', 'releases'),
 
-    String[1] $registry_version                         = hiera('podium::registry_version', '1.0.3-SNAPSHOT'),
-    String[1] $podium_version                           = hiera('podium::podium_version', '0.0.7-SNAPSHOT'),
+    String[1] $registry_version                         = hiera('podium::registry_version', '1.0.3'),
+    String[1] $podium_version                           = hiera('podium::podium_version', '0.0.7'),
 
     String[8] $registry_password                        = hiera('podium::registry_password', undef),
+    String[8] $jwt_secret                               = hiera('podium::jwt_secret', undef),
     Optional[String[1]] $registry_git_token             = hiera('podium::registry_git_token', undef),
     Optional[String[1]] $registry_git_ssh_key           = hiera('podium::registry_git_ssh_key', undef),
     Optional[String[1]] $registry_git_ssh_pubkey        = hiera('podium::registry_git_ssh_pubkey', undef),
@@ -43,6 +44,12 @@ class podium::params(
     }
     if ($uaa_db_password == undef) {
         fail('No database password specified. Please configure podium::uaa_db_password')
+    }
+    if ($registry_password == undef) {
+        fail('No registry password specified. Please configure podium::registry_password')
+    }
+    if ($jwt_secret == undef) {
+        fail('No JWT secret specified. Please configure podium::jwt_secret')
     }
 
     $gateway_db_url = "jdbc:postgresql://${gateway_db_host}:${gateway_db_port}/${gateway_dbname}"
