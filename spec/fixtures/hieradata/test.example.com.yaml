@@ -4,6 +4,8 @@ podium::registry_git_ssh_key: |
   Placeholder data
   -----END RSA PRIVATE KEY-----
 
+podium::jwt_secret: A very secret token
+
 podium::registry_password: Some secret
 
 podium::gateway_db_user: podiumGateway

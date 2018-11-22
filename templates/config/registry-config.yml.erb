@@ -2,3 +2,9 @@ security:
     user:
         password: <%= @registry_password %>
 
+podium:
+    security:
+        authentication:
+            jwt:
+                secret: <%= @jwt_secret %>
+

@@ -3,3 +3,4 @@ podium::reply_address: podium@example.com
 
 podium::registry_password: Some secret
 
+podium::jwt_secret: A very secret token
