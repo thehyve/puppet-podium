@@ -1,5 +1,7 @@
 # Puppet module for Podium.
 
+[![Build Status](https://travis-ci.org/thehyve/puppet-podium.svg?branch=master)](https://travis-ci.org/thehyve/puppet-podium/branches)
+
 This is the repository containing a puppet module for deploying the [Podium application](https://github.com/thehyve/podium),
 an open source, microservices based request portal.
 
