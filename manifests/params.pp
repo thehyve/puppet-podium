@@ -7,8 +7,8 @@ class podium::params(
     Enum['snapshots', 'releases'] $registry_repository  = hiera('podium::registry_repository', 'releases'),
     Enum['snapshots', 'releases'] $podium_repository    = hiera('podium::podium_repository', 'releases'),
 
-    String[1] $registry_version                         = hiera('podium::registry_version', '1.0.3'),
-    String[1] $podium_version                           = hiera('podium::podium_version', '0.0.7'),
+    String[1] $registry_version                         = hiera('podium::registry_version', '1.0.4'),
+    String[1] $podium_version                           = hiera('podium::podium_version', '1.0.0'),
 
     String[8] $registry_password                        = hiera('podium::registry_password', undef),
     String[8] $jwt_secret                               = hiera('podium::jwt_secret', undef),
