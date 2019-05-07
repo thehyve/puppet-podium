@@ -6,7 +6,7 @@ User=<%= @user %>
 WorkingDirectory=<%= @home %>
 ExecStart=<%= @registry_start_script %>
 Restart=always
-StandardOutput=journal+console
+StandardOutput=journal
 
 [Install]
 WantedBy=multi-user.target

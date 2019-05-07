@@ -8,7 +8,7 @@ WorkingDirectory=<%= @home %>
 ExecStartPre=/bin/sleep 10
 ExecStart=<%= @uaa_start_script %>
 Restart=always
-StandardOutput=journal+console
+StandardOutput=journal
 
 [Install]
 WantedBy=multi-user.target
