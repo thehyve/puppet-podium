@@ -26,11 +26,11 @@ Alternatively, the modules and their dependencies can be cloned from `github.com
 and copied into `/etc/puppetlabs/code/modules`:
 ```bash
 git clone https://github.com/puppetlabs/puppetlabs-java java
-pushd java; git checkout 1.5.0; popd
+pushd java; git checkout 2.4.0; popd
 git clone https://github.com/puppetlabs/puppetlabs-stdlib stdlib
 pushd stdlib; git checkout 4.17.0; popd
 git clone https://github.com/voxpupuli/puppet-archive.git archive
-pushd archive; git checkout v1.3.0; popd
+pushd archive; git checkout v3.0.0; popd
 git clone https://github.com/puppetlabs/puppetlabs-postgresql postgresql
 pushd postgresql; git checkout 4.7.1; popd
 cp -r stdlib archive postgresql /etc/puppetlabs/code/modules/
