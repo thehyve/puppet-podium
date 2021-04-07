@@ -20,10 +20,10 @@ class podium::database inherits podium::params {
 
     # Database users
     postgresql::server::role { $gateway_db_user:
-        password_hash => postgresql_password ($gateway_db_user, $gateway_db_password),
+        password_hash => postgresql::postgresql_password ($gateway_db_user, $gateway_db_password),
     }
     postgresql::server::role { $uaa_db_user:
-        password_hash => postgresql_password ($uaa_db_user, $uaa_db_password),
+        password_hash => postgresql::postgresql_password ($uaa_db_user, $uaa_db_password),
     }
 
     # Database grants
