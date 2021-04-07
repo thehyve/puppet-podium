@@ -26,7 +26,7 @@ Alternatively, the modules and their dependencies can be cloned from `github.com
 and copied into `/etc/puppetlabs/code/modules`:
 ```bash
 git clone https://github.com/puppetlabs/puppetlabs-java java
-pushd java; git checkout 2.4.0; popd
+pushd java; git checkout 3.3.0; popd
 git clone https://github.com/puppetlabs/puppetlabs-stdlib stdlib
 pushd stdlib; git checkout 4.17.0; popd
 git clone https://github.com/voxpupuli/puppet-archive.git archive
@@ -76,7 +76,7 @@ To activate the use of Hiera, configure `/etc/puppetlabs/code/hiera.yaml`. Examp
 Defaults can then be configured in `/etc/puppetlabs/code/hieradata/default.yaml`, e.g.:
 ```yaml
 ---
-podium::podium_version: 0.0.7
+podium::podium_version: 1.0.4
 
 postgresql::globals::version: 9.6 # the postgresql server version to use/install.
 postgresql::globals::manage_package_repo: false # use the default package repository to install postgresql.
@@ -148,8 +148,8 @@ sudo puppet apply --modulepath=${HOME}/puppet/:/etc/puppetlabs/code/modules/ exa
 ## Test
 There are some automated tests, run using [rake](https://github.com/ruby/rake).
 
-A version of `ruby` before `2.3` is required. [rvm](https://rvm.io/) can be used to install a specific version of `ruby`.
-Use `rvm install 2.1` to use `ruby` version `2.1`.
+A version of `ruby` before `2.4` is required. [rvm](https://rvm.io/) can be used to install a specific version of `ruby`.
+Use `rvm install 2.4` to use `ruby` version `2.4`.
 
 The tests are automatically run on our Bamboo server: [PUPPET-PODIUM](https://ci.ctmmtrait.nl/browse/PUPPET-PODIUM).
 
@@ -158,14 +158,14 @@ Install rake using the system-wide `ruby`:
 ```bash
 yum install ruby-devel
 gem install bundler
-export PUPPET_VERSION=4.4.2
+export PUPPET_VERSION=5.5.22
 bundle
 ```
 or using `rvm`:
 ```bash
 rvm install 2.4
 gem install bundler
-export PUPPET_VERSION=4.4.2
+export PUPPET_VERSION=5.5.22
 bundle
 ```
 Run the test suite:
@@ -195,9 +195,9 @@ Alternatively, the parameters of the `::podium::params` class can be used to con
 | Hiera key | Default value | Description |
 |-----------|---------------|-------------|
 | `podium::nexus_url`     | `https://repo.thehyve.nl` | The Nexus/Maven repository server. |
-| `podium::registry_version`       | `0.0.3` | The version of the Podium registry to install. |
+| `podium::registry_version`       | `1.0.2` | The version of the Podium registry to install. |
 | `podium::registry_repository`    | `releases` | The repository to use for the registry. [`snapshots`, `releases`] |
-| `podium::podium_version`       | `0.0.7` | The version of Podium to install. |
+| `podium::podium_version`       | `1.0.4` | The version of Podium to install. |
 | `podium::podium_repository`    | `releases` | The repository to use for Podium. [`snapshots`, `releases`] |
 | `podium::user`          | `podium` | System user that owns the application assets. |
 | `podium::user_home`     | `/home/${user}` | The user home directory |
