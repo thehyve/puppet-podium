@@ -13,7 +13,7 @@ The repository used to fetch the required Podium packages from is configurable a
 ## Dependencies and installation
 
 ### Puppet modules
-The module depends on the `java`, `stdlib`, `archive` and `postgresql` modules.
+The module depends on the `java`, `stdlib`, `archive`, `postgresql` and `elasticsearch` modules.
 
 The most convenient way is to run `puppet module install` as `root`:
 ```bash
@@ -21,6 +21,7 @@ sudo puppet module install puppetlabs-java
 sudo puppet module install puppetlabs-stdlib
 sudo puppet module install puppet-archive
 sudo puppet module install puppetlabs-postgresql
+sudo puppet module install elastic-elasticsearch
 ```
 Alternatively, the modules and their dependencies can be cloned from `github.com`
 and copied into `/etc/puppetlabs/code/modules`:
@@ -33,7 +34,9 @@ git clone https://github.com/voxpupuli/puppet-archive.git archive
 pushd archive; git checkout v3.0.0; popd
 git clone https://github.com/puppetlabs/puppetlabs-postgresql postgresql
 pushd postgresql; git checkout 4.7.1; popd
-cp -r stdlib archive postgresql /etc/puppetlabs/code/modules/
+git clone https://github.com/elastic/puppet-elasticsearch elasticsearch
+pushd elasticsearch; git checkout 6.3.4; popd
+cp -r stdlib archive postgresql elasticsearch /etc/puppetlabs/code/modules/
 ```
 
 ### Install the `podium` module
@@ -151,8 +154,6 @@ There are some automated tests, run using [rake](https://github.com/ruby/rake).
 A version of `ruby` before `2.4` is required. [rvm](https://rvm.io/) can be used to install a specific version of `ruby`.
 Use `rvm install 2.4` to use `ruby` version `2.4`.
 
-The tests are automatically run on our Bamboo server: [PUPPET-PODIUM](https://ci.ctmmtrait.nl/browse/PUPPET-PODIUM).
-
 ### Rake tests
 Install rake using the system-wide `ruby`:
 ```bash
@@ -226,7 +227,7 @@ with an SSL proxy installed on the host machine.
 
 ## License
 
-Copyright &copy; 2017&ndash;2018  The Hyve.
+Copyright &copy; 2017&ndash;2021  The Hyve.
 
 The puppet module for Podium is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -236,4 +237,3 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the [GNU General Public License](LICENSE) along with this program. If not, see https://www.gnu.org/licenses/.
-
