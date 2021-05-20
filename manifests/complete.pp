@@ -5,8 +5,7 @@ class podium::complete inherits podium::params {
     include ::podium::artefacts
     include ::podium::services
 
-    class { '::elasticsearch':
-    }
-    ::elasticsearch::instance { 'es-01':
+    package{ 'elasticsearch':
+      ensure => latest,
     }
 }
