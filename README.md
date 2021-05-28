@@ -216,7 +216,6 @@ Alternatively, the parameters of the `::podium::params` class can be used to con
 | `podium::podium_repository`    | `releases` | The repository to use for Podium. [`snapshots`, `releases`] |
 | `podium::user`          | `podium` | System user that owns the application assets. |
 | `podium::user_home`     | `/home/${user}` | The user home directory |
-| `podium::registry_git_ssh_key` | | The secret key used to access the config repository. |
 | `podium::gateway_db_password`       | | The password for the Gateway database. |
 | `podium::uaa_db_password`       | | The password for the Uaa database. |
 | `podium::app_url`       | | The address where the Podium application will be available. |

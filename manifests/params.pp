@@ -12,9 +12,6 @@ class podium::params(
 
     String[8] $registry_password                        = hiera('podium::registry_password', undef),
     String[8] $jwt_secret                               = hiera('podium::jwt_secret', undef),
-    Optional[String[1]] $registry_git_token             = hiera('podium::registry_git_token', undef),
-    Optional[String[1]] $registry_git_ssh_key           = hiera('podium::registry_git_ssh_key', undef),
-    Optional[String[1]] $registry_git_ssh_pubkey        = hiera('podium::registry_git_ssh_pubkey', undef),
 
     Optional[String[1]] $gateway_db_user                = hiera('podium::gateway_db_user', 'podiumGateway'),
     Optional[String[8]] $gateway_db_password            = hiera('podium::gateway_db_password', undef),
@@ -69,6 +66,4 @@ class podium::params(
     $registry_war_file  = "${podiumuser_home}/podium-registry-${registry_version}.war"
     $gateway_war_file  = "${podiumuser_home}/podium-gateway-${podium_version}.war"
     $uaa_war_file  = "${podiumuser_home}/podium-uaa-${podium_version}.war"
-
 }
-

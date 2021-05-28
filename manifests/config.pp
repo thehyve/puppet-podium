@@ -12,9 +12,6 @@ class podium::config inherits podium::params {
     $reply_address = $podium::params::reply_address
     $registry_password = $podium::params::registry_password
     $jwt_secret = $podium::params::jwt_secret
-    $registry_git_token = $podium::params::registry_git_token
-    $registry_git_ssh_key = $podium::params::registry_git_ssh_key
-    $registry_git_ssh_pubkey = $podium::params::registry_git_ssh_pubkey
     $user = $podium::params::user
     $home = $podium::params::podiumuser_home
     $gateway_config_file = $podium::params::gateway_config_file
@@ -41,37 +38,6 @@ class podium::config inherits podium::params {
         creates => "${home}/.ssh/known_hosts",
         cwd     => $home,
         user    => $user,
-    }
-
-    # Set ssh keys for access to https://github.com/thehyve/bbmri-podium-config
-    # Generate such keys with:
-    #   ssh-keygen -f bbmri-podium-config
-    # and upload the public key to: https://github.com/thehyve/bbmri-podium-config/settings/keys.
-    if ($registry_git_ssh_key != undef) {
-        file { "${home}/.ssh/id_rsa":
-            content => $registry_git_ssh_key,
-            mode    => '0400',
-            require => File["${home}/.ssh"],
-        }
-        file { "${home}/.ssh/id_rsa.pub":
-            content => $registry_git_ssh_pubkey,
-            require => File["${home}/.ssh"],
-        }
-    } else {
-        file { "${home}/.ssh/id_rsa":
-            ensure =>  absent,
-            purge  =>  true,
-            force  =>  true,
-        }
-        file { "${home}/.ssh/id_rsa.pub":
-            ensure =>  absent,
-            purge  =>  true,
-            force  =>  true,
-        }
-    }
-
-    if ($registry_git_token != undef) {
-        $registry_git_options = "-Dspring.cloud.config.server.git.username=${registry_git_token}"
     }
 
     file { $gateway_config_file:
