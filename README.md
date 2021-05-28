@@ -52,11 +52,13 @@ git clone https://github.com/thehyve/puppet-podium.git podium
 
 For each node where you want to install Podium, the module needs to be included with
 `include ::podium::complete`.
+For installation of Elasticsearch, a suitable package manager needs to be available with an up-to-date version of Elasticsearch (&geq; 7).
 
 Here is an example manifest file `manifests/test.example.com.pp`:
 ```puppet
 node 'test.example.com' {
-    include ::podium::complete
+  include ::apt  
+  include ::podium::complete
 }
 ```
 The node manifest can also be in another file, e.g., `site.pp`.
@@ -83,6 +85,18 @@ podium::podium_version: 1.0.4
 
 postgresql::globals::version: 9.6 # the postgresql server version to use/install.
 postgresql::globals::manage_package_repo: false # use the default package repository to install postgresql.
+
+# Apt source configuration for Elasticsearch 7
+apt::sources:
+  elasticsearch:
+    location: 'https://artifacts.elastic.co/packages/7.x/apt'
+    release: 'stable'
+    repos: 'main'
+    key:
+      id: '46095ACC8548582C1A2699A9D27D666CD88E42B4'
+      server: 'pgp.mit.edu'
+    include:
+      src: false
 ```
 
 Machine specific configuration should be in `/etc/puppetlabs/code/hieradata/${hostname}.yaml`, e.g.,
@@ -202,7 +216,6 @@ Alternatively, the parameters of the `::podium::params` class can be used to con
 | `podium::podium_repository`    | `releases` | The repository to use for Podium. [`snapshots`, `releases`] |
 | `podium::user`          | `podium` | System user that owns the application assets. |
 | `podium::user_home`     | `/home/${user}` | The user home directory |
-| `podium::registry_git_ssh_key` | | The secret key used to access the config repository. |
 | `podium::gateway_db_password`       | | The password for the Gateway database. |
 | `podium::uaa_db_password`       | | The password for the Uaa database. |
 | `podium::app_url`       | | The address where the Podium application will be available. |
