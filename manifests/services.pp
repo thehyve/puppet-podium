@@ -34,13 +34,13 @@ class podium::services inherits podium::params {
     $gateway_memory = $::podium::params::gateway_memory
     $gateway_java_opts = "${default_java_opts} -Xms${gateway_memory} -Xmx${gateway_memory}"
     $gateway_app_port = $::podium::params::gateway_app_port
-    $gateway_config_opts = "-Dspring.config.location=${::podium::params::gateway_config_file}"
+    $gateway_config_opts = "-Dspring.config.location=classpath:config/application.yml,classpath:config/application-prod.yml,${::podium::params::gateway_config_file}"
     $gateway_app_opts = "${default_app_opts} -Dserver.port=${gateway_app_port} ${gateway_config_opts}"
     $gateway_start_script = "${home}/start_gateway"
 
     $uaa_memory = $::podium::params::uaa_memory
     $uaa_java_opts = "${default_java_opts} -Xms${uaa_memory} -Xmx${uaa_memory} "
-    $uaa_config_opts = "-Dspring.config.location=${::podium::params::uaa_config_file}"
+    $uaa_config_opts = "-Dspring.config.location=classpath:config/application.yml,classpath:config/application-prod.yml,${::podium::params::uaa_config_file}"
     $uaa_app_opts = "${default_app_opts} ${uaa_config_opts}"
     $uaa_start_script = "${home}/start_uaa"
 
