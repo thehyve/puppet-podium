@@ -6,6 +6,9 @@ class podium::complete inherits podium::params {
     include ::podium::services
 
     package{ 'elasticsearch':
-      ensure => latest,
+        ensure => latest,
+    }
+    -> service { 'elasticsearch':
+        ensure => running,
     }
 }
